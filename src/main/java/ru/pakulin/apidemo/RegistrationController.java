@@ -26,8 +26,8 @@ public class RegistrationController {
     @RequestMapping(
             method = RequestMethod.POST)
     public ResponseEntity<List<User>> regUser(@RequestParam String name, @RequestParam int age, @RequestParam String email, @RequestBody List<User> users) {
-        registrationService.creationUser(name, age, email);
+        User user = registrationService.creationUser(name, age, email);
 
-        return new ResponseEntity<>(registrationService.registrationUser(name, age, email, users), HttpStatus.CREATED);
+        return new ResponseEntity<>(registrationService.registrationUser(user.getName(), user.getAge(), user.getEmail(), users), HttpStatus.CREATED);
     }
 }
